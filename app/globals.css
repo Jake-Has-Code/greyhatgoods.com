@@ -1,0 +1,155 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+}
+
+:root,
+.dark {
+  --font-geist-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-geist-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --background: #060a10;
+  --foreground: #e5e7eb;
+  --card: #0d141e;
+  --card-foreground: #f3f4f6;
+  --primary: #00a5ff;
+  --primary-foreground: #020609;
+  --secondary: #151d28;
+  --secondary-foreground: #e5e7eb;
+  --muted: #111820;
+  --muted-foreground: #848b94;
+  --accent: #00a5ff;
+  --accent-foreground: #020609;
+  --border: rgba(255, 255, 255, 0.12);
+  --ring: #00a5ff;
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground antialiased; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+}
+
+::selection {
+  background: #00a5ff;
+  color: #020609;
+}
+
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(0, 165, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 165, 255, 0.045) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to right, black, transparent 84%);
+}
+
+.product-photo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #0c121b;
+}
+
+.product-photo img {
+  position: absolute;
+  max-width: none;
+  transition: transform 500ms ease;
+}
+
+.group:hover .product-photo img {
+  transform: scale(1.035);
+}
+
+.product-photo.tee-dark img {
+  width: 2030px;
+  left: -480px;
+  top: -1160px;
+}
+
+.product-photo.tee-blue img {
+  width: 2040px;
+  left: -1015px;
+  top: -1165px;
+  filter: saturate(1.2) hue-rotate(2deg);
+}
+
+.plaque-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  background: radial-gradient(circle at 50% 42%, rgba(0, 165, 255, 0.14), transparent 42%), #0b121b;
+}
+
+.plaque-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.plaque-copy strong {
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: white;
+}
+
+.plaque-copy small {
+  margin-top: 0.4rem;
+  font-family: var(--font-geist-mono);
+  font-size: 0.35rem;
+  letter-spacing: 0.2em;
+  color: #848b94;
+}
+
+.plaque-placeholder > p {
+  position: absolute;
+  bottom: 1.25rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-geist-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #66707c;
+}
+
+@media (max-width: 1100px) and (min-width: 768px) {
+  .product-photo.tee-dark img { left: -540px; }
+  .product-photo.tee-blue img { left: -1090px; }
+}
+
+@media (max-width: 767px) {
+  .product-photo.tee-dark img { left: calc(50% - 690px); }
+  .product-photo.tee-blue img { left: calc(50% - 1230px); }
+}

@@ -1,0 +1,15 @@
+services:
+  website:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_STRIPE_PAYMENT_LINK: ${NEXT_PUBLIC_STRIPE_PAYMENT_LINK:-}
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
